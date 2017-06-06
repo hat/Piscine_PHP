@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<style>
+		@import url(https://fonts.googleapis.com/css?family=Muli);
+		*,
+		*:before,
+		*:after {box-sizing: border-box;color: #071108;}
+
+		body {background-color: #F2EFE9;font-family: 'Muli', sans-serif;}
+
+		.top {display: flex;align-items: center;flex-direction: column;}
+
+		.title {display: none;}
+		.group-label {display: none;transition: 75ms ease-out;}
+		.full-table {margin: 0 auto 20vh;width: 100vw;position: relative;}
+		.main-table {display: flex;align-items: flex-end;justify-content: space-around;padding: 2vw;}
+		.group {display: flex;flex-direction: column;}
+		.element, .holder {display: flex;justify-content: center;position: relative;width: 5vw;height: 5vw;margin: 1px;border-radius: 2px;transition: 0.2s linear;}
+		.number {position: absolute;top: 45%;font-size: 1.2vw;transition: inherit;text-align: center;}
+		.symbol {position: absolute;font-size: 2.1vw;transition: inherit;text-align: center;font-weight: bold;}
+		.atomic {position: absolute;font-size: small;top: -10%;right: 10%;}
+		.name {display: flex;align-self: flex-end;margin-bottom: 8%;font-size: 1.4vw;transition: 250ms linear;opacity: 0;}
+		.element__expanded {height: calc(5vw * 1.97);width: calc(5vw * 1.97);}.element__expanded .number {font-size: 1.7vw;}.element__expanded .symbol {left: 8%;bottom: 26%;font-size: 3.2vw;}.element__expanded .name {opacity: 1;}
+		.holder {border: 2px dotted #ccc;}
+		.f-block {position: absolute;display: flex;flex-direction: column;padding-left: calc((2 * 5vw) + 2vw + 6px);}
+		.series {display: flex;flex-direction: row;}
+		@media (min-width: 761px) {.group-label {  display: flex;  align-items: center;  justify-content: center;  height: 6vw;  width: 42%;  font-size: 3.5vw;  border-radius: 3vw;}
+		.title {  display: inline;  font-size: 6vw;  margin: 3vh 0 2vh;  color: #071108;}
+		.element:hover, .holder:hover {  transition-delay: 30ms;  cursor: pointer;  height: calc(5vw * 1.97);  width: calc(5vw * 1.97);}.element:hover .symbol, .holder:hover .symbol {  font-size: 3.2vw;  bottom: 26%;}.element:hover .number, .holder:hover .number {  font-size: 1.7vw;}.element:hover .name, .holder:hover .name {  opacity: 1;}
+		.holder:hover {  transition-delay: 0;  cursor: pointer;  height: 5vw;  width: 5vw;}}.other-non-metal {background-color: #1AFF00;}
+		.alkali-metal {background-color: #FF0C00;}
+		.alkaline-earth-metal {background-color: #FF6700;}
+		.transition-metal {background-color: #FF54A4;}
+		.metalloid {background-color: #FFB800;}
+		.post-transition-metal {background-color: #FF762E;}
+		.halogen {background-color: #00EEFF;}
+		.noble-gas {background-color: #0E94FF;}
+		.rare-earth {background-color: #FF006A;}
+		.actinoid {background-color: #FF00C6;}
+	</style>
+</head>
+
+<body>
+<div class="top">
+      <h1 class="title">Mendeleïev Periodic Table</h1>
+      <div class="group-label"></div>
+    </div>
+    <div class="full-table">
+      <div class="main-table">
+        <div class="group">
+          <div class="element other-non-metal">
+            <p class="number">1</p>
+            <h1 class="symbol">H</h1>
+            <p class="atomic">1.0079</p>
+          </div>
+          <div class="element alkali-metal">
+            <p class="number">3</p>
+            <h1 class="symbol">Li</h1>
+            <p class="atomic">6.941</p>
+          </div>
+          <div class="element alkali-metal">
+            <p class="number">11</p>
+            <h1 class="symbol">Na</h1>
+            <p class="atomic">22.9897</p>
+          </div>
+          <div class="element alkali-metal">
+            <p class="number">19</p>
+            <h1 class="symbol">K</h1>
+            <p class="atomic">39.0983</p>
+          </div>
+          <div class="element alkali-metal">
+            <p class="number">37</p>
+            <h1 class="symbol">Rb</h1>
+            <p class="atomic">85.4678</p>
+          </div>
+          <div class="element alkali-metal">
+            <p class="number">55</p>
+            <h1 class="symbol">Cs</h1>
+            <p class="atomic">132.9055</p>
+          </div>
+          <div class="element alkali-metal">
+            <p class="number">87</p>
+            <h1 class="symbol">Fr</h1>
+            <p class="atomic">223</p>
+          </div>
+        </div>
+        <div class="group">
+          <div class="element alkaline-earth-metal">
+            <p class="number">4</p>
+            <h1 class="symbol">Be</h1>
+            <p class="atomic">9.0122</p>
+          </div>
+          <div class="element alkaline-earth-metal">
+            <p class="number">12</p>
+            <h1 class="symbol">Mg</h1>
+            <p class="atomic">24.305</p>
+          </div>
+          <div class="element alkaline-earth-metal">
+            <p class="number">20</p>
+            <h1 class="symbol">Ca</h1>
+            <p class="atomic">40.078</p>
+          </div>
+          <div class="element alkaline-earth-metal">
+            <p class="number">38</p>
+            <h1 class="symbol">Sr</h1>
+            <p class="atomic">87.62</p>
+          </div>
+          <div class="element alkaline-earth-metal">
+            <p class="number">56</p>
+            <h1 class="symbol">Ba</h1>
+            <p class="atomic">137.327</p>
+          </div>
+          <div class="element alkaline-earth-metal">
+            <p class="number">88</p>
+            <h1 class="symbol">Ra</h1>
+            <p class="atomic">226</p>
+          </div>
+        </div>
+        <div class="group">
+          <div class="element transition-metal">
+            <p class="number">21</p>
+            <h1 class="symbol">Sc</h1>
+            <p class="atomic">44.9559</p>
+          </div>
+          <div class="element transition-metal">
+            <p class="number">39</p>
+            <h1 class="symbol">Y</h1>
+            <p class="atomic">88.9059</p>
+          </div>
+          <a id="lanthanoids-holder" class="holder" title="Lanthanoids" href="https://www.dylanbyars.com"></a>
+          <a id="actinoids-holder" class="holder" title="Actinoids" href="https://github.com/dbyars">
+          </a>
+        </div>
+        <div class="group">
+          <div class="element transition-metal">
+            <p class="number">22</p>
+            <h1 class="symbol">Ti</h1>
+            <p class="atomic">47.867</p>
+          </div>
+          <div class="element transition-metal">
+            <p class="number">40</p>
+            <h1 class="symbol">Zr</h1>
+            <p class="atomic">91.224</p>
+          </div>
+          <div class="element transition-metal">
+            <p class="number">72</p>
+            <h1 class="symbol">Hf</h1>
+            <p class="atomic">178.49</p>
+          </div>
+          <div class="element transition-metal">
+            <p class="number">104</p>
+            <h1 class="symbol">Rf</h1>
+            <p class="atomic">261</p>
+          </div>
+        </div>
+        <div class="group">
+          <div class="element transition-metal">
+            <p class="number">23</p>
+            <h1 class="symbol">V</h1>
+            <p class="atomic">50.9415</p>
+          </div>
+          <div class="element transition-metal">
+            <p class="number">41</p>
+            <h1 class="symbol">Nb</h1>
+            <p class="atomic">92.9064</p>
+          </div>
+          <div class="element transition-metal">
+            <p class="number">73</p>
+            <h1 class="symbol">Ta</h1>
+            <p class="atomic">180.9479</p>
+          </div>
+          <div class="element transition-metal">
+            <p class="number">105</p>
+            <h1 class="symbol">Db</h1>
+            <p class="atomic">262</p>
+          </div>
+        </div>
+        <div class="group">
+          <div class="element transition-metal">
+            <p class="number">24</p>
+            <h1 class="symbol">Cr</h1>
+            <p class="atomic">51.9961</p>
+          </div>
+          <div class="element transition-metal">
+            <p class="number">42</p>
+            <h1 class="symbol">Mo</h1>
+            <p class="atomic">95.94</p>
+          </div>
+          <div class="element transition-metal">
+            <p class="number">74</p>
+            <h1 class="symbol">W</h1>
+            <p class="atomic">183.84</p>
+          </div>
+          <div class="element transition-metal">
+            <p class="number">106</p>
+            <h1 class="symbol">Sg</h1>
+            <p class="atomic">266</p>
+          </div>
+        </div>
+        <div class="group">
+          <div class="element transition-metal">
+            <p class="number">25</p>
+            <h1 class="symbol">Mn</h1>
+            <p class="atomic">54.938</p>
+          </div>
+          <div class="element transition-metal">
+            <p class="number">43</p>
+            <h1 class="symbol">Tc</h1>
+            <p class="atomic">98</p>
+          </div>
+          <div class="element transition-metal">
+            <p class="number">75</p>
+            <h1 class="symbol">Re</h1>
+            <p class="atomic">186.207</p>
+          </div>
+          <div class="element transition-metal">
+            <p class="number">107</p>
+            <h1 class="symbol">Bh</h1>
+            <p class="atomic">264</p>
+          </div>
+        </div>
+        <div class="group">
+          <div class="element transition-metal">
+            <p class="number">26</p>
+            <h1 class="symbol">Fe</h1>
+            <p class="atomic">55.845</p>
+          </div>
+          <div class="element transition-metal">
+            <p class="number">44</p>
+            <h1 class="symbol">Ru</h1>
+            <p class="atomic">101.07</p>
+          </div>
+          <div class="element transition-metal">
+            <p class="number">76</p>
+            <h1 class="symbol">Os</h1>
+            <p class="atomic">190.23</p>
+          </div>
+          <div class="element transition-metal">
+            <p class="number">108</p>
+            <h1 class="symbol">Hs</h1>
+            <p class="atomic">277</p>
+          </div>
+        </div>
+        <div class="group">
+          <div class="element transition-metal">
+            <p class="number">27</p>
+            <h1 class="symbol">Co</h1>
+            <p class="atomic">58.6934</p>
+          </div>
+          <div class="element transition-metal">
+            <p class="number">45</p>
+            <h1 class="symbol">Rh</h1>
+            <p class="atomic">102.9055</p>
+          </div>
+          <div class="element transition-metal">
+            <p class="number">77</p>
+            <h1 class="symbol">Ir</h1>
+            <p class="atomic">192.217</p>
+          </div>
+          <div class="element transition-metal">
+            <p class="number">109</p>
+            <h1 class="symbol">Mt</h1>
+            <p class="atomic">268</p>
+          </div>
+        </div>
+        <div class="group">
+          <div class="element transition-metal">
+            <p class="number">28</p>
+            <h1 class="symbol">Ni</h1>
+            <p class="atomic">58.9332</p>
+          </div>
+          <div class="element transition-metal">
+            <p class="number">46</p>
+            <h1 class="symbol">Pd</h1>
+            <p class="atomic">106.42</p>
+          </div>
+          <div class="element transition-metal">
+            <p class="number">78</p>
+            <h1 class="symbol">Pt</h1>
+            <p class="atomic">195.078</p>
+          </div>
+          <div class="element transition-metal">
+            <p class="number">110</p>
+            <h1 class="symbol">Ds</h1>
+            <p class="atomic">281</p>
+          </div>
+        </div>
+        <div class="group">
+          <div class="element transition-metal">
+            <p class="number">29</p>
+            <h1 class="symbol">Cu</h1>
+            <p class="atomic">63.546</p>
+          </div>
+          <div class="element transition-metal">
+            <p class="number">47</p>
+            <h1 class="symbol">Ag</h1>
+            <p class="atomic">107.8682</p>
+          </div>
+          <div class="element transition-metal">
+            <p class="number">79</p>
+            <h1 class="symbol">Au</h1>
+            <p class="atomic">196.9665</p>
+          </div>
+          <div class="element transition-metal">
+            <p class="number">111</p>
+            <h1 class="symbol">Rg</h1>
+            <p class="atomic">272</p>
+          </div>
+        </div>
+        <div class="group">
+          <div class="element transition-metal">
+            <p class="number">30</p>
+            <h1 class="symbol">Zn</h1>
+            <p class="atomic">65.39</p>
+          </div>
+          <div class="element transition-metal">
+            <p class="number">48</p>
+            <h1 class="symbol">Cd</h1>
+            <p class="atomic">112.411</p>
+          </div>
+          <div class="element transition-metal">
+            <p class="number">80</p>
+            <h1 class="symbol">Hg</h1>
+            <p class="atomic">200.59</p>
+          </div>
+          <div class="element transition-metal">
+            <p class="number">112</p>
+            <h1 class="symbol">Cn</h1>
+            <p class="atomic">285</p>
+          </div>
+        </div>
+        <div class="group">
+          <div class="element metalloid">
+            <p class="number">5</p>
+            <h1 class="symbol">B</h1>
+            <p class="atomic">10.811</p>
+          </div>
+          <div class="element post-transition-metal">
+            <p class="number">13</p>
+            <h1 class="symbol">Al</h1>
+            <p class="atomic">26.9815</p>
+          </div>
+          <div class="element post-transition-metal">
+            <p class="number">31</p>
+            <h1 class="symbol">Ga</h1>
+            <p class="atomic">69.723</p>
+          </div>
+          <div class="element post-transition-metal">
+            <p class="number">49</p>
+            <h1 class="symbol">In</h1>
+            <p class="atomic">114.818</p>
+          </div>
+          <div class="element post-transition-metal">
+            <p class="number">81</p>
+            <h1 class="symbol">Tl</h1>
+            <p class="atomic">204.3833</p>
+          </div>
+          <div class="element post-transition-metal">
+            <p class="number">113</p>
+            <h1 class="symbol">Nh</h1>
+            <p class="atomic">286</p>
+          </div>
+        </div>
+        <div class="group">
+          <div class="element other-non-metal">
+            <p class="number">6</p>
+            <h1 class="symbol">C</h1>
+            <p class="atomic">12.0107</p>
+          </div>
+          <div class="element metalloid">
+            <p class="number">14</p>
+            <h1 class="symbol">Si</h1>
+            <p class="atomic">28.0855</p>
+          </div>
+          <div class="element metalloid">
+            <p class="number">32</p>
+            <h1 class="symbol">Ge</h1>
+            <p class="atomic">72.64</p>
+          </div>
+          <div class="element post-transition-metal">
+            <p class="number">50</p>
+            <h1 class="symbol">Sn</h1>
+            <p class="atomic">118.71</p>
+          </div>
+          <div class="element post-transition-metal">
+            <p class="number">82</p>
+            <h1 class="symbol">Pb</h1>
+            <p class="atomic">207.2</p>
+          </div>
+          <div class="element post-transition-metal">
+            <p class="number">114</p>
+            <h1 class="symbol">Fl</h1>
+            <p class="atomic">289</p>
+          </div>
+        </div>
+        <div class="group">
+          <div class="element other-non-metal">
+            <p class="number">7</p>
+            <h1 class="symbol">N</h1>
+            <p class="atomic">14.0067</p>
+          </div>
+          <div class="element other-non-metal">
+            <p class="number">15</p>
+            <h1 class="symbol">P</h1>
+            <p class="atomic">30.9738</p>
+          </div>
+          <div class="element metalloid">
+            <p class="number">33</p>
+            <h1 class="symbol">As</h1>
+            <p class="atomic">74.9216</p>
+          </div>
+          <div class="element metalloid">
+            <p class="number">51</p>
+            <h1 class="symbol">Sb</h1>
+            <p class="atomic">121.76</p>
+          </div>
+          <div class="element post-transition-metal">
+            <p class="number">83</p>
+            <h1 class="symbol">Bi</h1>
+            <p class="atomic">208.9804</p>
+          </div>
+          <div class="element post-transition-metal">
+            <p class="number">115</p>
+            <h1 class="symbol">Mc</h1>
+            <p class="atomic">288</p>
+          </div>
+        </div>
+        <div class="group">
+          <div class="element other-non-metal">
+            <p class="number">8</p>
+            <h1 class="symbol">O</h1>
+            <p class="atomic">15.9994</p>
+          </div>
+          <div class="element other-non-metal">
+            <p class="number">16</p>
+            <h1 class="symbol">S</h1>
+            <p class="atomic">32.065</p>
+          </div>
+          <div class="element other-non-metal">
+            <p class="number">34</p>
+            <h1 class="symbol">Se</h1>
+            <p class="atomic">78.96</p>
+          </div>
+          <div class="element metalloid">
+            <p class="number">52</p>
+            <h1 class="symbol">Te</h1>
+            <p class="atomic">127.6</p>
+          </div>
+          <div class="element metalloid">
+            <p class="number">84</p>
+            <h1 class="symbol">Po</h1>
+            <p class="atomic">209</p>
+          </div>
+          <div class="element post-transition-metal">
+            <p class="number">116</p>
+            <h1 class="symbol">Lv</h1>
+            <p class="atomic">292</p>
+          </div>
+        </div>
+        <div class="group">
+          <div class="element halogen">
+            <p class="number">9</p>
+            <h1 class="symbol">F</h1>
+            <p class="atomic">18.9984</p>
+          </div>
+          <div class="element halogen">
+            <p class="number">17</p>
+            <h1 class="symbol">Cl</h1>
+            <p class="atomic">35.453</p>
+          </div>
+          <div class="element halogen">
+            <p class="number">35</p>
+            <h1 class="symbol">Br</h1>
+            <p class="atomic">79.904</p>
+          </div>
+          <div class="element halogen">
+            <p class="number">53</p>
+            <h1 class="symbol">I</h1>
+            <p class="atomic">126.9045</p>
+          </div>
+          <div class="element halogen">
+            <p class="number">85</p>
+            <h1 class="symbol">At</h1>
+            <p class="atomic">210</p>
+          </div>
+          <div class="element halogen">
+            <p class="number">117</p>
+            <h1 class="symbol">Ts</h1>
+            <p class="atomic">294</p>
+          </div>
+        </div>
+        <div class="group">
+          <div class="element noble-gas">
+            <p class="number">2</p>
+            <h1 class="symbol">He</h1>
+            <p class="atomic">4.0026</p>
+          </div>
+          <div class="element noble-gas">
+            <p class="number">10</p>
+            <h1 class="symbol">Ne</h1>
+            <p class="atomic">20.1797</p>
+          </div>
+          <div class="element noble-gas">
+            <p class="number">18</p>
+            <h1 class="symbol">Ar</h1>
+            <p class="atomic">39.0983</p>
+          </div>
+          <div class="element noble-gas">
+            <p class="number">36</p>
+            <h1 class="symbol">Kr</h1>
+            <p class="atomic">83.8</p>
+          </div>
+          <div class="element noble-gas">
+            <p class="number">54</p>
+            <h1 class="symbol">Xe</h1>
+            <p class="atomic">131.293</p>
+          </div>
+          <div class="element noble-gas">
+            <p class="number">86</p>
+            <h1 class="symbol">Rn</h1>
+            <p class="atomic">222</p>
+          </div>
+          <div class="element noble-gas">
+            <p class="number">118</p>
+            <h1 class="symbol">Og</h1>
+            <p class="atomic">294</p>
+          </div>
+        </div>
+      </div>
+      <div class="f-block">
+        <div id="lanthanoids" class="series">
+          <div class="element rare-earth">
+            <p class="number">57</p>
+            <h1 class="symbol">La</h1>
+            <p class="atomic">138.9055</p>
+          </div>
+          <div class="element rare-earth">
+            <p class="number">58</p>
+            <h1 class="symbol">Ce</h1>
+            <p class="atomic">140.116</p>
+          </div>
+          <div class="element rare-earth">
+            <p class="number">59</p>
+            <h1 class="symbol">Pr</h1>
+            <p class="atomic">140.9077</p>
+          </div>
+          <div class="element rare-earth">
+            <p class="number">60</p>
+            <h1 class="symbol">Nd</h1>
+            <p class="atomic">144.24</p>
+          </div>
+          <div class="element rare-earth">
+            <p class="number">61</p>
+            <h1 class="symbol">Pm</h1>
+            <p class="atomic">145</p>
+          </div>
+          <div class="element rare-earth">
+            <p class="number">62</p>
+            <h1 class="symbol">Sm</h1>
+            <p class="atomic">150.36</p>
+          </div>
+          <div class="element rare-earth">
+            <p class="number">63</p>
+            <h1 class="symbol">Eu</h1>
+            <p class="atomic">151.964</p>
+          </div>
+          <div class="element rare-earth">
+            <p class="number">64</p>
+            <h1 class="symbol">Gd</h1>
+            <p class="atomic">157.25</p>
+          </div>
+          <div class="element rare-earth">
+            <p class="number">65</p>
+            <h1 class="symbol">Tb</h1>
+            <p class="atomic">158.9253</p>
+          </div>
+          <div class="element rare-earth">
+            <p class="number">66</p>
+            <h1 class="symbol">Dy</h1>
+            <p class="atomic">162.5</p>
+          </div>
+          <div class="element rare-earth">
+            <p class="number">67</p>
+            <h1 class="symbol">Ho</h1>
+            <p class="atomic">164.9303</p>
+          </div>
+          <div class="element rare-earth">
+            <p class="number">68</p>
+            <h1 class="symbol">Er</h1>
+            <p class="atomic">167.259</p>
+          </div>
+          <div class="element rare-earth">
+            <p class="number">69</p>
+            <h1 class="symbol">Tb</h1>
+            <p class="atomic">158.92535</p>
+          </div>
+          <div class="element rare-earth">
+            <p class="number">70</p>
+            <h1 class="symbol">Yb</h1>
+            <p class="atomic">173.04</p>
+          </div>
+          <div class="element rare-earth">
+            <p class="number">71</p>
+            <h1 class="symbol">Lu</h1>
+            <p class="atomic">174.967</p>
+          </div>
+        </div>
+        <div id="actinoids" class="series">
+          <div class="element actinoid">
+            <p class="number">89</p>
+            <h1 class="symbol">Ac</h1>
+            <p class="atomic">227</p>
+          </div>
+          <div class="element actinoid">
+            <p class="number">90</p>
+            <h1 class="symbol">Th</h1>
+            <p class="atomic">232.0381</p>
+          </div>
+          <div class="element actinoid">
+            <p class="number">91</p>
+            <h1 class="symbol">Pa</h1>
+            <p class="atomic">231.0359</p>
+          </div>
+          <div class="element actinoid">
+            <p class="number">92</p>
+            <h1 class="symbol">U</h1>
+            <p class="atomic">238.0289</p>
+          </div>
+          <div class="element actinoid">
+            <p class="number">93</p>
+            <h1 class="symbol">Np</h1>
+            <p class="atomic">237</p>
+          </div>
+          <div class="element actinoid">
+            <p class="number">94</p>
+            <h1 class="symbol">Pu</h1>
+            <p class="atomic">244</p>
+          </div>
+          <div class="element actinoid">
+            <p class="number">95</p>
+            <h1 class="symbol">Am</h1>
+            <p class="atomic">243</p>
+          </div>
+          <div class="element actinoid">
+            <p class="number">96</p>
+            <h1 class="symbol">Cm</h1>
+            <p class="atomic">247</p>
+          </div>
+          <div class="element actinoid">
+            <p class="number">97</p>
+            <h1 class="symbol">Bk</h1>
+            <p class="atomic">247</p>
+          </div>
+          <div class="element actinoid">
+            <p class="number">98</p>
+            <h1 class="symbol">Cf</h1>
+            <p class="atomic">251</p>
+          </div>
+          <div class="element actinoid">
+            <p class="number">99</p>
+            <h1 class="symbol">Es</h1>
+            <p class="atomic">252</p>
+          </div>
+          <div class="element actinoid">
+            <p class="number">100</p>
+            <h1 class="symbol">Fm</h1>
+            <p class="atomic">257</p>
+          </div>
+          <div class="element actinoid">
+            <p class="number">101</p>
+            <h1 class="symbol">Md</h1>
+            <p class="atomic">258</p>
+          </div>
+          <div class="element actinoid">
+            <p class="number">102</p>
+            <h1 class="symbol">No</h1>
+            <p class="atomic"></p>
+          </div>
+          <div class="element actinoid">
+            <p class="number">103</p>
+            <h1 class="symbol">Lr</h1>
+            <p class="atomic">262</p>
+          </div>
+        </div>
+      </div>
+    </div>
+<!--     <div id="screen-width"></div> -->
+</body>
+</html>
