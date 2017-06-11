@@ -2,50 +2,13 @@
 
 <html lang="en">
 <head>
-	<style>
-		@import url(https://fonts.googleapis.com/css?family=Muli);
-		*,
-		*:before,
-		*:after {box-sizing: border-box;color: #071108;}
-
-		body {background-color: #F2EFE9;font-family: 'Muli', sans-serif;}
-
-		.top {display: flex;align-items: center;flex-direction: column;}
-
-		.title {display: none;}
-		.group-label {display: none;transition: 75ms ease-out;}
-		.full-table {margin: 0 auto 20vh;width: 100vw;position: relative;}
-		.main-table {display: flex;align-items: flex-end;justify-content: space-around;padding: 2vw;}
-		.group {display: flex;flex-direction: column;}
-		.element, .holder {display: flex;justify-content: center;position: relative;width: 5vw;height: 5vw;margin: 1px;border-radius: 2px;transition: 0.2s linear;}
-		.number {position: absolute;top: 45%;font-size: 1.2vw;transition: inherit;text-align: center;}
-		.symbol {position: absolute;font-size: 2.1vw;transition: inherit;text-align: center;font-weight: bold;}
-		.atomic {position: absolute;font-size: small;top: -10%;right: 10%;}
-		.name {display: flex;align-self: flex-end;margin-bottom: 8%;font-size: 1.4vw;transition: 250ms linear;opacity: 0;}
-		.element__expanded {height: calc(5vw * 1.97);width: calc(5vw * 1.97);}.element__expanded .number {font-size: 1.7vw;}.element__expanded .symbol {left: 8%;bottom: 26%;font-size: 3.2vw;}.element__expanded .name {opacity: 1;}
-		.holder {border: 2px dotted #ccc;}
-		.f-block {position: absolute;display: flex;flex-direction: column;padding-left: calc((2 * 5vw) + 2vw + 6px);}
-		.series {display: flex;flex-direction: row;}
-		@media (min-width: 761px) {.group-label {  display: flex;  align-items: center;  justify-content: center;  height: 6vw;  width: 42%;  font-size: 3.5vw;  border-radius: 3vw;}
-		.title {  display: inline;  font-size: 6vw;  margin: 3vh 0 2vh;  color: #071108;}
-		.element:hover, .holder:hover {  transition-delay: 30ms;  cursor: pointer;  height: calc(5vw * 1.97);  width: calc(5vw * 1.97);}.element:hover .symbol, .holder:hover .symbol {  font-size: 3.2vw;  bottom: 26%;}.element:hover .number, .holder:hover .number {  font-size: 1.7vw;}.element:hover .name, .holder:hover .name {  opacity: 1;}
-		.holder:hover {  transition-delay: 0;  cursor: pointer;  height: 5vw;  width: 5vw;}}.other-non-metal {background-color: #1AFF00;}
-		.alkali-metal {background-color: #FF0C00;}
-		.alkaline-earth-metal {background-color: #FF6700;}
-		.transition-metal {background-color: #FF54A4;}
-		.metalloid {background-color: #FFB800;}
-		.post-transition-metal {background-color: #FF762E;}
-		.halogen {background-color: #00EEFF;}
-		.noble-gas {background-color: #0E94FF;}
-		.rare-earth {background-color: #FF006A;}
-		.actinoid {background-color: #FF00C6;}
-	</style>
+  <title>Periodic Table</title>
+  <link rel="stylesheet" href="responsive.css">
 </head>
 
 <body>
-<div class="top">
+    <div class="top">
       <h1 class="title">Mendeleïev Periodic Table</h1>
-      <div class="group-label"></div>
     </div>
     <div class="full-table">
       <div class="main-table">
@@ -129,9 +92,8 @@
             <h1 class="symbol">Y</h1>
             <p class="atomic">88.9059</p>
           </div>
-          <a id="lanthanoids-holder" class="holder" title="Lanthanoids" href="https://www.dylanbyars.com"></a>
-          <a id="actinoids-holder" class="holder" title="Actinoids" href="https://github.com/dbyars">
-          </a>
+          <a id="lanthanoids-holder" class="holder" title="Lanthanoids"></a>
+          <a id="actinoids-holder" class="holder" title="Actinoids"></a>
         </div>
         <div class="group">
           <div class="element transition-metal">
@@ -686,6 +648,5 @@
         </div>
       </div>
     </div>
-<!--     <div id="screen-width"></div> -->
 </body>
 </html>

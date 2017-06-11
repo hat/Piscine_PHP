@@ -1,8 +1,6 @@
 body 
 {
 	background-color: #505050;
-    background-image: url(resources/doft_crop.jpg);
-    background-size: cover;
 }
 
 .top-nav
@@ -53,10 +51,11 @@ body
     border-radius: 10px;
     background-image: url(resources/cluster.jpg);
     background-size: cover;
+    background-repeat: no-repeat;
     border: 10px solid #909090;
 }
 
-.top-nav img:first-of-type
+.tn-img-1
 {
     position: inherit;
     margin: auto;
@@ -67,7 +66,7 @@ body
     border-radius: inherit;
 }
 
-.top-nav img:nth-child(2)
+.tn-img-2
 {
     position: relative;
     float: right;
@@ -76,7 +75,7 @@ body
     width: 15vw;
 }
 
-.top-nav img:nth-child(3)
+.tn-img-3
 {
     position: relative;
     height: auto;
@@ -85,7 +84,7 @@ body
     left: 48vw;
 }
 
-.top-nav img:nth-child(4)
+.tn-img-4
 {
     position: relative;
     height: auto;
@@ -132,4 +131,70 @@ body
     margin-left: .25vw;
     background-image: url(resources/brick.jpg);
     background-repeat: repeat-y| repeat-x;
+}
+
+.respond-box
+{
+    position: absolute;
+    background-color: #88FF89;
+    z-index: 100;
+    width: 27vw;
+    height: 18vh;
+    top: 73vh;
+    left: 10.5vw;
+    border-radius: 8px;
+    box-shadow: 10px 10px 5px #000;
+    font-size: 20px;
+}
+
+.respond-box input
+{
+    width: 20vw;
+}
+
+.respond-box p
+{
+    margin: 0;
+}
+
+.respond-box button
+{
+    border-radius: 0;
+}
+
+.large-text
+{
+    font-size: 45px;
+}
+
+.red-shadow
+{
+    text-shadow: 3px 3px 3px red;
+}
+
+map
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+area:first-child
+{
+    position: absolute;
+    cursor: crosshair;
+    height: 23vh;
+    width: 8vw;
+    top: 33vh;
+    left: 17vw;
+}
+
+area:last-child
+{
+    position: absolute;
+    cursor: crosshair;
+    height: 16vh;
+    width: 10vw;
+    top: 33vh;
+    left: 42vw;
 }
