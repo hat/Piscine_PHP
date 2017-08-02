@@ -1,21 +1,21 @@
 #!/usr/bin/env php
 <?php
 
-function get_ascii($char)
+function get_cmp_val($char)
 {
-    $ascii = ord($char);
-    if ($ascii == 0)
-        return $ascii;
-    if (($ascii < 48) || ($ascii >= 91 && $ascii <= 96) || ($ascii >= 123))
-        $ascii += 1000;
+    $val = ord($char);
+    if ($val == 0)
+        return $val;
+    if (!ctype_alpha($char))
+        $val += 500;
     else if (is_numeric($char))
-        $ascii += 100;
+        $val += 100;
     else if (ctype_upper($char))
-        $ascii += 32;
-    return $ascii;
+        $val += 32;
+    return $val;
 }
 
-function ord_compare($string1, $string2)
+function cmp($string1, $string2)
 {
     if ($string1 == $string2)
         return 0;
@@ -26,10 +26,10 @@ function ord_compare($string1, $string2)
     $i = 0;
     while ($i < $split_s1_length && $i < $split_s2_length)
     {
-        $ascii_s1 = get_ascii($split_s1[$i]);
-        $ascii_s2 = get_ascii($split_s2[$i]);
-        if ($ascii_s1 != $ascii_s2)
-            return ($ascii_s1 < $ascii_s2) ? -1 : 1;
+        $s1_cmp_val = get_cmp_val($split_s1[$i]);
+        $s2_cmp_val = get_cmp_val($split_s2[$i]);
+        if ($s1_cmp_val != $s2_cmp_val)
+            return ($s1_cmp_val < $s2_cmp_val) ? -1 : 1;
         $i += 1;
     }
     if ($i == $split_s1_length && $i == $split_s1_length)
@@ -39,18 +39,14 @@ function ord_compare($string1, $string2)
     return 1;
 }
 
-if ($argc < 2)
+if ($argc >= 2)
 {
-    exit (1);
-}
-
-$args = join(' ', $argv);
-$str = preg_split('/\s+/', $args);
-unset($str[0]);
-usort($str, "ord_compare");
-foreach ($str as $element)
-{
-    echo "$element\n";
+    $args = join(' ', $argv);
+    $str = preg_split('/\s+/', $args);
+    unset($str[0]);
+    usort($str, "cmp");
+    foreach ($str as $s)
+        echo "$s\n";
 }
 
 ?>
