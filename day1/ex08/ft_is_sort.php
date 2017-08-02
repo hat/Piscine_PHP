@@ -1,4 +1,4 @@
-<?php
+<?PHP
 function ft_is_sort($arg_1)
 {
 	$sorted = array_values($arg_1);

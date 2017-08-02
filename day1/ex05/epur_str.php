@@ -5,5 +5,7 @@ $str = preg_split('/\s+/', $args);
 $offset = strlen($argv[0]);
 $argv[1][0] == ' ' ? $offset = $offset + 1 : $offset;
 $epur = substr(join(' ', $str), $offset);
-echo "$epur\n";
+echo "$epur";
+if (strlen($epur))
+	echo "\n";
 ?>
