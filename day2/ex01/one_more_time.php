@@ -1,6 +1,5 @@
 #!/usr/bin/env php
 <?php
-
 function get_month($month)
 {
 	$m = -1;
@@ -44,7 +43,6 @@ function get_month($month)
 	}
 	return $m;
 }
-
 if ($argv[1])
 {
 	$arg = $argv[1];
