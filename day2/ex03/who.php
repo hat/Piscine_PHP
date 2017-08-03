@@ -1,25 +1,21 @@
 #!/usr/bin/php
 <?php
+$info = file_get_contents("/var/run/utmpx");
 date_default_timezone_set('America/Vancouver');
-$fd = fopen("/var/run/utmpx", "r");
 
-while ($file = fread($fd, 628))
+$tty = [];
+while ($info != "")
 {
-    $unpacked = unpack("a256a/a4b/a32c/id/ie/I2f/a256g/i16h", $file);
-    $array[$unpacked['c']] = $unpacked;
+    $unpacked = unpack("A256user/A4id/A32ttyname/ipid/itype/lloginsec/lloginus/A256host/A64pad", $info);
+    if ($unpacked['type'] == 7)
+        $tty[] = $unpacked['user'] . " " . $unpacked['ttyname'] . "  " . strftime("%b %e %R", $unpacked['loginsec']) . PHP_EOL;
+    $info = substr($info, 628);
 }
 
-ksort($array);
+sort($tty);
 
-foreach ($array as $user)
+foreach ($tty as $x)
 {
-    if ($user['e'] == 7)
-    {
-        echo str_pad(substr(trim($user['a']), 0, 8), 8, " ")." ";
-        echo str_pad(substr(trim($user['c']), 0, 8), 8, " ")." ";
-        echo date("M", $user["f1"]);
-        echo str_pad(date("j", $user["f1"]), 3, " ", STR_PAD_LEFT)." ".date("H:i", $user["f1"]);
-        echo "\n";
-    }
+    print($x);
 }
 ?>
